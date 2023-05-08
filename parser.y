@@ -13,9 +13,9 @@
 %}
 
 %union {
-    double dval;
+    int dval;
     char* sval;
-    struct custom_data* cval; 
+    // struct custom_data* cval; 
 }
 
 %define parse.error verbose
@@ -25,7 +25,7 @@
 %token <sval> IDENTIFIER
 %token <sval> STRING
 %token <sval> POINTER
-%type <cval> input
+/* %type <cval> input */
 %token IF ELSE RETURN MINUS PLUS MULT DIV EQUAL
 %token L_PAREN R_PAREN L_BRACE R_BRACE SEMICOLON
 %token INT CHAR PRINTF SCANF INCLUDE STDIO_H COMMA MAIN
@@ -34,30 +34,27 @@
 %left MULT DIV
 %left MINUS PLUS
 
-%start input
+%start program
 
 %%
-input: { $$ = malloc(sizeof(custom_data)); $$->name = "input"; $$->counter = 0; }
+/* input: { $$ = malloc(sizeof(custom_data)); $$->name = "input"; $$->counter = 0; }
      | input program { $$ = $1; $1->counter++; }
-	  ;
+	  ; */
 
 program: include_statement main_func { printf("Input is valid.\n"); }
        ;
 
-include_statement: INCLUDE STDIO_H { printf("Include Statement.\n"); }
+include_statement: INCLUDE STDIO_H { printf("%Include Statement.\n"); }
             ;
 
-main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE  { printf("Main Function.\n"); }
+main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE { printf("Main Function.\n"); }
          ;
 
-statement_list: 
-statement { printf("Statement\n"); }
-               | statement_list statement { printf("Statement\n"); }
-               ;
+statement_list: statement { printf("Statement\n"); }
+              | statement_list statement { printf("Statement\n"); }
+              ;
 
-statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE %prec ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE statement\n"); }
-         | IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE statement\n"); }
-         | IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE elseif_statement %prec ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF statement\n"); }
+statement: if_else_statement
          | RETURN expression SEMICOLON { printf("Return statement\n"); }
          | PRINTF L_PAREN expression_list R_PAREN SEMICOLON { printf("Printf statement\n"); }
          | SCANF L_PAREN expression_list R_PAREN SEMICOLON { printf("Scanf statement\n"); }
@@ -65,9 +62,17 @@ statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE %prec EL
          | assignment SEMICOLON { printf("Assignment\n"); } 
          ;
 
-elseif_statement: ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE %prec ELSE L_BRACE statement_list R_BRACE
-                | ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list elseif_statement R_BRACE %prec ELSE L_BRACE statement_list R_BRACE
-                ;
+
+if_statement:
+            IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF statement\n"); }
+
+if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF statement\n"); }
+                    | if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF statement\n"); }
+                    ;
+
+if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE statement\n"); }
+                 | if_else_if_statement ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF-ELSE statement\n"); }
+                 ;
 
 assignment: IDENTIFIER EQUAL expression { printf("Assignment: %s\n", $1); }
           ;
@@ -87,7 +92,7 @@ expression_list: expression { printf("Expression\n"); }
                 | expression_list COMMA expression { printf("Expression\n"); }
                 ;
 
-expression: NUMBER { printf("Number: %f\n", $1); }
+expression: NUMBER { printf("Number: %i\n", $1); }
           | IDENTIFIER { printf("Identifier: %s\n", $1); }
           | STRING { printf("STRING: %s\n", $1); }
           | POINTER { printf("STRING: %s\n", $1); }

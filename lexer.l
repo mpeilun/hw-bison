@@ -1,10 +1,10 @@
 %{
 #include "parser.h"
 #define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
-int current_line = 1;
 %}
 
 %option noyywrap
+%option yylineno
 
 DIGIT    [0-9]
 LETTER   [a-zA-Z]
@@ -12,7 +12,7 @@ LETTER   [a-zA-Z]
 %%
 
 [ \t]+         {/* 忽略空格和制表符 */}
-[\r\n]         {current_line++;}
+[\r\n]         {/* 忽略換行 */}
 
 "if"           {return IF;}
 "else"         {return ELSE;}
@@ -51,6 +51,6 @@ main           {return MAIN;}
 \"[^\"\n]*\"   { yylval.sval = strdup(yytext); return STRING; }
 "&"([a-zA-Z_][a-zA-Z0-9_]*)   { yylval.sval = strdup(yytext); return POINTER; }
 
-.              {printf("Error at line %d: unrecognized symbol \"%s\"\n", current_line, yytext); exit(0);}
+.              {printf("Error at line %d: unrecognized symbol \"%s\"\n", yylineno, yytext); exit(0);}
 
 %%
