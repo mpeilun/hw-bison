@@ -3,19 +3,12 @@
 #include <stdlib.h>
 #include "lexer.h"
 
- void yyerror(const char *msg);
-
- // Here is an example how to create custom data structure
- typedef struct custom_data {
-    char* name;
-    int counter;
- } custom_data;
+void yyerror(const char *msg);
 %}
 
 %union {
     int dval;
     char* sval;
-    // struct custom_data* cval; 
 }
 
 %define parse.error verbose
@@ -25,7 +18,6 @@
 %token <sval> IDENTIFIER
 %token <sval> STRING
 %token <sval> POINTER
-/* %type <cval> input */
 %token IF ELSE RETURN MINUS PLUS MULT DIV EQUAL
 %token L_PAREN R_PAREN L_BRACE R_BRACE SEMICOLON
 %token INT CHAR PRINTF SCANF INCLUDE STDIO_H COMMA MAIN
@@ -52,6 +44,8 @@ main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE { printf("Mai
 
 statement_list: statement { printf("Statement\n"); }
               | statement_list statement { printf("Statement\n"); }
+              | error '\n' { yyerrok; /* 繼續解析 */ }
+              | error { yyerrok; /* 繼續解析 */ }
               ;
 
 statement: if_else_statement
@@ -128,6 +122,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+//TODO 需要再錯誤發生時，印出錯誤的行數，在繼續判斷錯誤
 void yyerror(const char *msg) {
    printf("** Line %d: %s\n", yylloc.first_line, msg);
 }
