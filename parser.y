@@ -85,7 +85,7 @@ declaration: type identifier_list { printWithLineNo("Declaration\n"); }
            ;
 
 type: INT { printWithLineNo("Type: int\n"); }
-    | CHAR { prprintWithLineNointf("Type: char\n"); }
+    | CHAR { printWithLineNo("Type: char\n"); }
     ;
 
 identifier_list: IDENTIFIER { printWithLineNo("Identifier: %s\n", $1); }
