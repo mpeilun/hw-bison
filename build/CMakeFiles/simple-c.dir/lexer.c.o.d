@@ -1,5 +1,5 @@
 CMakeFiles/simple-c.dir/lexer.c.o: \
- /home/kali/Desktop/sf_Desktop/simple-c/build/lexer.c \
+ /home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -58,7 +58,7 @@ CMakeFiles/simple-c.dir/lexer.c.o: \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/kali/Desktop/sf_Desktop/simple-c/build/parser.h \
+ /home/kali/Desktop/sf_Desktop/hw-bison/build/parser.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
