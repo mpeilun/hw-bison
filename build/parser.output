@@ -1,11 +1,11 @@
-State 69 conflicts: 4 shift/reduce
-State 70 conflicts: 4 shift/reduce
 State 71 conflicts: 4 shift/reduce
 State 72 conflicts: 4 shift/reduce
-State 73 conflicts: 8 shift/reduce
-State 74 conflicts: 8 shift/reduce
+State 73 conflicts: 4 shift/reduce
+State 74 conflicts: 4 shift/reduce
 State 75 conflicts: 8 shift/reduce
 State 76 conflicts: 8 shift/reduce
+State 77 conflicts: 8 shift/reduce
+State 78 conflicts: 8 shift/reduce
 
 
 Grammar
@@ -20,86 +20,88 @@ Grammar
 
     4 statement_list: statement
     5               | statement_list statement
-    6               | error '\n'
-    7               | error
+    6               | error_statement
 
-    8 statement: if_else_statement
-    9          | RETURN expression SEMICOLON
-   10          | PRINTF L_PAREN expression_list R_PAREN SEMICOLON
-   11          | SCANF L_PAREN expression_list R_PAREN SEMICOLON
-   12          | declaration SEMICOLON
-   13          | assignment SEMICOLON
+    7 error_statement: error SEMICOLON
+    8                | error '\n'
 
-   14 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+    9 statement: if_else_statement
+   10          | RETURN expression SEMICOLON
+   11          | PRINTF L_PAREN expression_list R_PAREN SEMICOLON
+   12          | SCANF L_PAREN expression_list R_PAREN SEMICOLON
+   13          | declaration SEMICOLON
+   14          | assignment SEMICOLON
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
-   16                     | if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   15 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
 
-   17 if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE
-   18                  | if_else_if_statement ELSE L_BRACE statement_list R_BRACE
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   17                     | if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
 
-   19 assignment: IDENTIFIER EQUAL expression
+   18 if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE
+   19                  | if_else_if_statement ELSE L_BRACE statement_list R_BRACE
 
-   20 declaration: type identifier_list
+   20 assignment: IDENTIFIER EQUAL expression
 
-   21 type: INT
-   22     | CHAR
+   21 declaration: type identifier_list
 
-   23 identifier_list: IDENTIFIER
-   24                | identifier_list COMMA IDENTIFIER
+   22 type: INT
+   23     | CHAR
 
-   25 expression_list: expression
-   26                | expression_list COMMA expression
+   24 identifier_list: IDENTIFIER
+   25                | identifier_list COMMA IDENTIFIER
 
-   27 expression: NUMBER
-   28           | IDENTIFIER
-   29           | STRING
-   30           | POINTER
-   31           | expression GREATER_THAN expression
-   32           | expression LESS_THAN expression
-   33           | expression DOUBLE_EQUAL expression
-   34           | expression NOT_EQUAL expression
-   35           | expression PLUS expression
-   36           | expression MINUS expression
-   37           | expression MULT expression
-   38           | expression DIV expression
-   39           | L_PAREN expression R_PAREN
+   26 expression_list: expression
+   27                | expression_list COMMA expression
+
+   28 expression: NUMBER
+   29           | IDENTIFIER
+   30           | STRING
+   31           | POINTER
+   32           | expression GREATER_THAN expression
+   33           | expression LESS_THAN expression
+   34           | expression DOUBLE_EQUAL expression
+   35           | expression NOT_EQUAL expression
+   36           | expression PLUS expression
+   37           | expression MINUS expression
+   38           | expression MULT expression
+   39           | expression DIV expression
+   40           | L_PAREN expression R_PAREN
 
 
 Terminals, with rules where they appear
 
     $end (0) 0
-    '\n' (10) 6
-    error (256) 6 7
-    NUMBER <dval> (258) 27
-    IDENTIFIER <sval> (259) 19 23 24 28
-    STRING <sval> (260) 29
-    POINTER <sval> (261) 30
-    IF (262) 14 15 16
-    ELSE (263) 15 16 17 18
-    RETURN (264) 9
-    MINUS (265) 36
-    PLUS (266) 35
-    MULT (267) 37
-    DIV (268) 38
-    EQUAL (269) 19
-    L_PAREN (270) 3 10 11 14 15 16 39
-    R_PAREN (271) 3 10 11 14 15 16 39
-    L_BRACE (272) 3 14 15 16 17 18
-    R_BRACE (273) 3 14 15 16 17 18
-    SEMICOLON (274) 9 10 11 12 13
-    INT (275) 3 21
-    CHAR (276) 22
-    PRINTF (277) 10
-    SCANF (278) 11
+    '\n' (10) 8
+    error (256) 7 8
+    NUMBER <dval> (258) 28
+    IDENTIFIER <sval> (259) 20 24 25 29
+    STRING <sval> (260) 30
+    POINTER <sval> (261) 31
+    IF (262) 15 16 17
+    ELSE (263) 16 17 18 19
+    RETURN (264) 10
+    MINUS (265) 37
+    PLUS (266) 36
+    MULT (267) 38
+    DIV (268) 39
+    EQUAL (269) 20
+    L_PAREN (270) 3 11 12 15 16 17 40
+    R_PAREN (271) 3 11 12 15 16 17 40
+    L_BRACE (272) 3 15 16 17 18 19
+    R_BRACE (273) 3 15 16 17 18 19
+    SEMICOLON (274) 7 10 11 12 13 14
+    INT (275) 3 22
+    CHAR (276) 23
+    PRINTF (277) 11
+    SCANF (278) 12
     INCLUDE (279) 2
     STDIO_H (280) 2
-    COMMA (281) 24 26
+    COMMA (281) 25 27
     MAIN (282) 3
-    GREATER_THAN (283) 31
-    LESS_THAN (284) 32
-    DOUBLE_EQUAL (285) 33
-    NOT_EQUAL (286) 34
+    GREATER_THAN (283) 32
+    LESS_THAN (284) 33
+    DOUBLE_EQUAL (285) 34
+    NOT_EQUAL (286) 35
 
 
 Nonterminals, with rules where they appear
@@ -116,38 +118,41 @@ Nonterminals, with rules where they appear
         on left: 3
         on right: 1
     statement_list (37)
-        on left: 4 5 6 7
-        on right: 3 5 14 15 16 17 18
-    statement (38)
-        on left: 8 9 10 11 12 13
+        on left: 4 5 6
+        on right: 3 5 15 16 17 18 19
+    error_statement (38)
+        on left: 7 8
+        on right: 6
+    statement (39)
+        on left: 9 10 11 12 13 14
         on right: 4 5
-    if_statement (39)
-        on left: 14
-        on right: 15 17
-    if_else_if_statement (40)
-        on left: 15 16
+    if_statement (40)
+        on left: 15
         on right: 16 18
-    if_else_statement (41)
-        on left: 17 18
-        on right: 8
-    assignment (42)
-        on left: 19
-        on right: 13
-    declaration (43)
+    if_else_if_statement (41)
+        on left: 16 17
+        on right: 17 19
+    if_else_statement (42)
+        on left: 18 19
+        on right: 9
+    assignment (43)
         on left: 20
-        on right: 12
-    type (44)
-        on left: 21 22
-        on right: 20
-    identifier_list (45)
-        on left: 23 24
-        on right: 20 24
-    expression_list (46)
-        on left: 25 26
-        on right: 10 11 26
-    expression (47)
-        on left: 27 28 29 30 31 32 33 34 35 36 37 38 39
-        on right: 9 14 15 16 19 25 26 31 32 33 34 35 36 37 38 39
+        on right: 14
+    declaration (44)
+        on left: 21
+        on right: 13
+    type (45)
+        on left: 22 23
+        on right: 21
+    identifier_list (46)
+        on left: 24 25
+        on right: 21 25
+    expression_list (47)
+        on left: 26 27
+        on right: 11 12 27
+    expression (48)
+        on left: 28 29 30 31 32 33 34 35 36 37 38 39 40
+        on right: 10 15 16 17 20 26 27 32 33 34 35 36 37 38 39 40
 
 
 State 0
@@ -246,78 +251,78 @@ State 11
     SCANF       shift, and go to state 19
 
     statement_list        go to state 20
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 12
 
-    6 statement_list: error • '\n'
-    7               | error •
+    7 error_statement: error • SEMICOLON
+    8                | error • '\n'
 
-    '\n'  shift, and go to state 28
-
-    $default  reduce using rule 7 (statement_list)
+    SEMICOLON  shift, and go to state 29
+    '\n'       shift, and go to state 30
 
 
 State 13
 
-   19 assignment: IDENTIFIER • EQUAL expression
+   20 assignment: IDENTIFIER • EQUAL expression
 
-    EQUAL  shift, and go to state 29
+    EQUAL  shift, and go to state 31
 
 
 State 14
 
-   14 if_statement: IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   15 if_statement: IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
 
-    L_PAREN  shift, and go to state 30
+    L_PAREN  shift, and go to state 32
 
 
 State 15
 
-    9 statement: RETURN • expression SEMICOLON
+   10 statement: RETURN • expression SEMICOLON
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
-    expression  go to state 36
+    expression  go to state 38
 
 
 State 16
 
-   21 type: INT •
-
-    $default  reduce using rule 21 (type)
-
-
-State 17
-
-   22 type: CHAR •
+   22 type: INT •
 
     $default  reduce using rule 22 (type)
 
 
+State 17
+
+   23 type: CHAR •
+
+    $default  reduce using rule 23 (type)
+
+
 State 18
 
-   10 statement: PRINTF • L_PAREN expression_list R_PAREN SEMICOLON
+   11 statement: PRINTF • L_PAREN expression_list R_PAREN SEMICOLON
 
-    L_PAREN  shift, and go to state 37
+    L_PAREN  shift, and go to state 39
 
 
 State 19
 
-   11 statement: SCANF • L_PAREN expression_list R_PAREN SEMICOLON
+   12 statement: SCANF • L_PAREN expression_list R_PAREN SEMICOLON
 
-    L_PAREN  shift, and go to state 38
+    L_PAREN  shift, and go to state 40
 
 
 State 20
@@ -328,525 +333,509 @@ State 20
     IDENTIFIER  shift, and go to state 13
     IF          shift, and go to state 14
     RETURN      shift, and go to state 15
-    R_BRACE     shift, and go to state 39
+    R_BRACE     shift, and go to state 41
     INT         shift, and go to state 16
     CHAR        shift, and go to state 17
     PRINTF      shift, and go to state 18
     SCANF       shift, and go to state 19
 
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 21
+
+    6 statement_list: error_statement •
+
+    $default  reduce using rule 6 (statement_list)
+
+
+State 22
 
     4 statement_list: statement •
 
     $default  reduce using rule 4 (statement_list)
 
 
-State 22
-
-   15 if_else_if_statement: if_statement • ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
-   17 if_else_statement: if_statement • ELSE L_BRACE statement_list R_BRACE
-
-    ELSE  shift, and go to state 41
-
-
 State 23
 
-   16 if_else_if_statement: if_else_if_statement • ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
-   18 if_else_statement: if_else_if_statement • ELSE L_BRACE statement_list R_BRACE
+   16 if_else_if_statement: if_statement • ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   18 if_else_statement: if_statement • ELSE L_BRACE statement_list R_BRACE
 
-    ELSE  shift, and go to state 42
+    ELSE  shift, and go to state 43
 
 
 State 24
 
-    8 statement: if_else_statement •
+   17 if_else_if_statement: if_else_if_statement • ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   19 if_else_statement: if_else_if_statement • ELSE L_BRACE statement_list R_BRACE
 
-    $default  reduce using rule 8 (statement)
+    ELSE  shift, and go to state 44
 
 
 State 25
 
-   13 statement: assignment • SEMICOLON
+    9 statement: if_else_statement •
 
-    SEMICOLON  shift, and go to state 43
+    $default  reduce using rule 9 (statement)
 
 
 State 26
 
-   12 statement: declaration • SEMICOLON
+   14 statement: assignment • SEMICOLON
 
-    SEMICOLON  shift, and go to state 44
+    SEMICOLON  shift, and go to state 45
 
 
 State 27
 
-   20 declaration: type • identifier_list
+   13 statement: declaration • SEMICOLON
 
-    IDENTIFIER  shift, and go to state 45
-
-    identifier_list  go to state 46
+    SEMICOLON  shift, and go to state 46
 
 
 State 28
 
-    6 statement_list: error '\n' •
+   21 declaration: type • identifier_list
 
-    $default  reduce using rule 6 (statement_list)
+    IDENTIFIER  shift, and go to state 47
+
+    identifier_list  go to state 48
 
 
 State 29
 
-   19 assignment: IDENTIFIER EQUAL • expression
+    7 error_statement: error SEMICOLON •
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
-
-    expression  go to state 47
+    $default  reduce using rule 7 (error_statement)
 
 
 State 30
 
-   14 if_statement: IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
+    8 error_statement: error '\n' •
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
-
-    expression  go to state 48
+    $default  reduce using rule 8 (error_statement)
 
 
 State 31
 
-   27 expression: NUMBER •
+   20 assignment: IDENTIFIER EQUAL • expression
 
-    $default  reduce using rule 27 (expression)
-
-
-State 32
-
-   28 expression: IDENTIFIER •
-
-    $default  reduce using rule 28 (expression)
-
-
-State 33
-
-   29 expression: STRING •
-
-    $default  reduce using rule 29 (expression)
-
-
-State 34
-
-   30 expression: POINTER •
-
-    $default  reduce using rule 30 (expression)
-
-
-State 35
-
-   39 expression: L_PAREN • expression R_PAREN
-
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 49
 
 
+State 32
+
+   15 if_statement: IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
+
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
+
+    expression  go to state 50
+
+
+State 33
+
+   28 expression: NUMBER •
+
+    $default  reduce using rule 28 (expression)
+
+
+State 34
+
+   29 expression: IDENTIFIER •
+
+    $default  reduce using rule 29 (expression)
+
+
+State 35
+
+   30 expression: STRING •
+
+    $default  reduce using rule 30 (expression)
+
+
 State 36
 
-    9 statement: RETURN expression • SEMICOLON
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   31 expression: POINTER •
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    SEMICOLON     shift, and go to state 54
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    $default  reduce using rule 31 (expression)
 
 
 State 37
 
-   10 statement: PRINTF L_PAREN • expression_list R_PAREN SEMICOLON
+   40 expression: L_PAREN • expression R_PAREN
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
-    expression_list  go to state 59
-    expression       go to state 60
+    expression  go to state 51
 
 
 State 38
 
-   11 statement: SCANF L_PAREN • expression_list R_PAREN SEMICOLON
+   10 statement: RETURN expression • SEMICOLON
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
-
-    expression_list  go to state 61
-    expression       go to state 60
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    SEMICOLON     shift, and go to state 56
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
 
 State 39
+
+   11 statement: PRINTF L_PAREN • expression_list R_PAREN SEMICOLON
+
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
+
+    expression_list  go to state 61
+    expression       go to state 62
+
+
+State 40
+
+   12 statement: SCANF L_PAREN • expression_list R_PAREN SEMICOLON
+
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
+
+    expression_list  go to state 63
+    expression       go to state 62
+
+
+State 41
 
     3 main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE •
 
     $default  reduce using rule 3 (main_func)
 
 
-State 40
+State 42
 
     5 statement_list: statement_list statement •
 
     $default  reduce using rule 5 (statement_list)
 
 
-State 41
+State 43
 
-   15 if_else_if_statement: if_statement ELSE • IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
-   17 if_else_statement: if_statement ELSE • L_BRACE statement_list R_BRACE
-
-    IF       shift, and go to state 62
-    L_BRACE  shift, and go to state 63
-
-
-State 42
-
-   16 if_else_if_statement: if_else_if_statement ELSE • IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
-   18 if_else_statement: if_else_if_statement ELSE • L_BRACE statement_list R_BRACE
+   16 if_else_if_statement: if_statement ELSE • IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   18 if_else_statement: if_statement ELSE • L_BRACE statement_list R_BRACE
 
     IF       shift, and go to state 64
     L_BRACE  shift, and go to state 65
 
 
-State 43
-
-   13 statement: assignment SEMICOLON •
-
-    $default  reduce using rule 13 (statement)
-
-
 State 44
 
-   12 statement: declaration SEMICOLON •
+   17 if_else_if_statement: if_else_if_statement ELSE • IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   19 if_else_statement: if_else_if_statement ELSE • L_BRACE statement_list R_BRACE
 
-    $default  reduce using rule 12 (statement)
+    IF       shift, and go to state 66
+    L_BRACE  shift, and go to state 67
 
 
 State 45
 
-   23 identifier_list: IDENTIFIER •
+   14 statement: assignment SEMICOLON •
 
-    $default  reduce using rule 23 (identifier_list)
+    $default  reduce using rule 14 (statement)
 
 
 State 46
 
-   20 declaration: type identifier_list •
-   24 identifier_list: identifier_list • COMMA IDENTIFIER
+   13 statement: declaration SEMICOLON •
 
-    COMMA  shift, and go to state 66
-
-    $default  reduce using rule 20 (declaration)
+    $default  reduce using rule 13 (statement)
 
 
 State 47
 
-   19 assignment: IDENTIFIER EQUAL expression •
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   24 identifier_list: IDENTIFIER •
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
-
-    $default  reduce using rule 19 (assignment)
+    $default  reduce using rule 24 (identifier_list)
 
 
 State 48
 
-   14 if_statement: IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   21 declaration: type identifier_list •
+   25 identifier_list: identifier_list • COMMA IDENTIFIER
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    R_PAREN       shift, and go to state 67
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    COMMA  shift, and go to state 68
+
+    $default  reduce using rule 21 (declaration)
 
 
 State 49
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
-   39           | L_PAREN expression • R_PAREN
+   20 assignment: IDENTIFIER EQUAL expression •
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    R_PAREN       shift, and go to state 68
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
+
+    $default  reduce using rule 20 (assignment)
 
 
 State 50
 
-   36 expression: expression MINUS • expression
+   15 if_statement: IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
-
-    expression  go to state 69
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    R_PAREN       shift, and go to state 69
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
 
 State 51
 
-   35 expression: expression PLUS • expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
+   40           | L_PAREN expression • R_PAREN
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
-
-    expression  go to state 70
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    R_PAREN       shift, and go to state 70
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
 
 State 52
 
-   37 expression: expression MULT • expression
+   37 expression: expression MINUS • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 71
 
 
 State 53
 
-   38 expression: expression DIV • expression
+   36 expression: expression PLUS • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 72
 
 
 State 54
 
-    9 statement: RETURN expression SEMICOLON •
+   38 expression: expression MULT • expression
 
-    $default  reduce using rule 9 (statement)
-
-
-State 55
-
-   31 expression: expression GREATER_THAN • expression
-
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 73
 
 
-State 56
+State 55
 
-   32 expression: expression LESS_THAN • expression
+   39 expression: expression DIV • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 74
 
 
+State 56
+
+   10 statement: RETURN expression SEMICOLON •
+
+    $default  reduce using rule 10 (statement)
+
+
 State 57
 
-   33 expression: expression DOUBLE_EQUAL • expression
+   32 expression: expression GREATER_THAN • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 75
 
 
 State 58
 
-   34 expression: expression NOT_EQUAL • expression
+   33 expression: expression LESS_THAN • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 76
 
 
 State 59
 
-   10 statement: PRINTF L_PAREN expression_list • R_PAREN SEMICOLON
-   26 expression_list: expression_list • COMMA expression
+   34 expression: expression DOUBLE_EQUAL • expression
 
-    R_PAREN  shift, and go to state 77
-    COMMA    shift, and go to state 78
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
+
+    expression  go to state 77
 
 
 State 60
 
-   25 expression_list: expression •
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   35 expression: expression NOT_EQUAL • expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
-    $default  reduce using rule 25 (expression_list)
+    expression  go to state 78
 
 
 State 61
 
-   11 statement: SCANF L_PAREN expression_list • R_PAREN SEMICOLON
-   26 expression_list: expression_list • COMMA expression
+   11 statement: PRINTF L_PAREN expression_list • R_PAREN SEMICOLON
+   27 expression_list: expression_list • COMMA expression
 
     R_PAREN  shift, and go to state 79
-    COMMA    shift, and go to state 78
+    COMMA    shift, and go to state 80
 
 
 State 62
 
-   15 if_else_if_statement: if_statement ELSE IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   26 expression_list: expression •
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    L_PAREN  shift, and go to state 80
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
+
+    $default  reduce using rule 26 (expression_list)
 
 
 State 63
 
-   17 if_else_statement: if_statement ELSE L_BRACE • statement_list R_BRACE
+   12 statement: SCANF L_PAREN expression_list • R_PAREN SEMICOLON
+   27 expression_list: expression_list • COMMA expression
 
-    error       shift, and go to state 12
-    IDENTIFIER  shift, and go to state 13
-    IF          shift, and go to state 14
-    RETURN      shift, and go to state 15
-    INT         shift, and go to state 16
-    CHAR        shift, and go to state 17
-    PRINTF      shift, and go to state 18
-    SCANF       shift, and go to state 19
-
-    statement_list        go to state 81
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    R_PAREN  shift, and go to state 81
+    COMMA    shift, and go to state 80
 
 
 State 64
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
+   16 if_else_if_statement: if_statement ELSE IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
 
     L_PAREN  shift, and go to state 82
 
 
 State 65
 
-   18 if_else_statement: if_else_if_statement ELSE L_BRACE • statement_list R_BRACE
+   18 if_else_statement: if_statement ELSE L_BRACE • statement_list R_BRACE
 
     error       shift, and go to state 12
     IDENTIFIER  shift, and go to state 13
@@ -858,102 +847,84 @@ State 65
     SCANF       shift, and go to state 19
 
     statement_list        go to state 83
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 66
 
-   24 identifier_list: identifier_list COMMA • IDENTIFIER
+   17 if_else_if_statement: if_else_if_statement ELSE IF • L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE
 
-    IDENTIFIER  shift, and go to state 84
+    L_PAREN  shift, and go to state 84
 
 
 State 67
 
-   14 if_statement: IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
+   19 if_else_statement: if_else_if_statement ELSE L_BRACE • statement_list R_BRACE
 
-    L_BRACE  shift, and go to state 85
+    error       shift, and go to state 12
+    IDENTIFIER  shift, and go to state 13
+    IF          shift, and go to state 14
+    RETURN      shift, and go to state 15
+    INT         shift, and go to state 16
+    CHAR        shift, and go to state 17
+    PRINTF      shift, and go to state 18
+    SCANF       shift, and go to state 19
+
+    statement_list        go to state 85
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 68
 
-   39 expression: L_PAREN expression R_PAREN •
+   25 identifier_list: identifier_list COMMA • IDENTIFIER
 
-    $default  reduce using rule 39 (expression)
+    IDENTIFIER  shift, and go to state 86
 
 
 State 69
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   36           | expression MINUS expression •
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   15 if_statement: IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
 
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
-
-    GREATER_THAN  [reduce using rule 36 (expression)]
-    LESS_THAN     [reduce using rule 36 (expression)]
-    DOUBLE_EQUAL  [reduce using rule 36 (expression)]
-    NOT_EQUAL     [reduce using rule 36 (expression)]
-    $default      reduce using rule 36 (expression)
+    L_BRACE  shift, and go to state 87
 
 
 State 70
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   35           | expression PLUS expression •
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   40 expression: L_PAREN expression R_PAREN •
 
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
-
-    GREATER_THAN  [reduce using rule 35 (expression)]
-    LESS_THAN     [reduce using rule 35 (expression)]
-    DOUBLE_EQUAL  [reduce using rule 35 (expression)]
-    NOT_EQUAL     [reduce using rule 35 (expression)]
-    $default      reduce using rule 35 (expression)
+    $default  reduce using rule 40 (expression)
 
 
 State 71
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   37           | expression MULT expression •
-   38           | expression • DIV expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   37           | expression MINUS expression •
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
     GREATER_THAN  [reduce using rule 37 (expression)]
     LESS_THAN     [reduce using rule 37 (expression)]
@@ -964,22 +935,46 @@ State 71
 
 State 72
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
-   38           | expression DIV expression •
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   36           | expression PLUS expression •
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
+
+    GREATER_THAN  [reduce using rule 36 (expression)]
+    LESS_THAN     [reduce using rule 36 (expression)]
+    DOUBLE_EQUAL  [reduce using rule 36 (expression)]
+    NOT_EQUAL     [reduce using rule 36 (expression)]
+    $default      reduce using rule 36 (expression)
+
+
+State 73
+
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   38           | expression MULT expression •
+   39           | expression • DIV expression
+
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
     GREATER_THAN  [reduce using rule 38 (expression)]
     LESS_THAN     [reduce using rule 38 (expression)]
@@ -988,58 +983,52 @@ State 72
     $default      reduce using rule 38 (expression)
 
 
-State 73
-
-   31 expression: expression • GREATER_THAN expression
-   31           | expression GREATER_THAN expression •
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
-
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
-
-    MINUS         [reduce using rule 31 (expression)]
-    PLUS          [reduce using rule 31 (expression)]
-    MULT          [reduce using rule 31 (expression)]
-    DIV           [reduce using rule 31 (expression)]
-    GREATER_THAN  [reduce using rule 31 (expression)]
-    LESS_THAN     [reduce using rule 31 (expression)]
-    DOUBLE_EQUAL  [reduce using rule 31 (expression)]
-    NOT_EQUAL     [reduce using rule 31 (expression)]
-    $default      reduce using rule 31 (expression)
-
-
 State 74
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   32           | expression LESS_THAN expression •
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
+   39           | expression DIV expression •
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
+
+    GREATER_THAN  [reduce using rule 39 (expression)]
+    LESS_THAN     [reduce using rule 39 (expression)]
+    DOUBLE_EQUAL  [reduce using rule 39 (expression)]
+    NOT_EQUAL     [reduce using rule 39 (expression)]
+    $default      reduce using rule 39 (expression)
+
+
+State 75
+
+   32 expression: expression • GREATER_THAN expression
+   32           | expression GREATER_THAN expression •
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
+
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
     MINUS         [reduce using rule 32 (expression)]
     PLUS          [reduce using rule 32 (expression)]
@@ -1052,26 +1041,26 @@ State 74
     $default      reduce using rule 32 (expression)
 
 
-State 75
+State 76
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   33           | expression DOUBLE_EQUAL expression •
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   33           | expression LESS_THAN expression •
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
     MINUS         [reduce using rule 33 (expression)]
     PLUS          [reduce using rule 33 (expression)]
@@ -1084,26 +1073,26 @@ State 75
     $default      reduce using rule 33 (expression)
 
 
-State 76
+State 77
 
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   34           | expression NOT_EQUAL expression •
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   34           | expression DOUBLE_EQUAL expression •
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
     MINUS         [reduce using rule 34 (expression)]
     PLUS          [reduce using rule 34 (expression)]
@@ -1116,78 +1105,74 @@ State 76
     $default      reduce using rule 34 (expression)
 
 
-State 77
-
-   10 statement: PRINTF L_PAREN expression_list R_PAREN • SEMICOLON
-
-    SEMICOLON  shift, and go to state 86
-
-
 State 78
 
-   26 expression_list: expression_list COMMA • expression
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   35           | expression NOT_EQUAL expression •
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
-    expression  go to state 87
+    MINUS         [reduce using rule 35 (expression)]
+    PLUS          [reduce using rule 35 (expression)]
+    MULT          [reduce using rule 35 (expression)]
+    DIV           [reduce using rule 35 (expression)]
+    GREATER_THAN  [reduce using rule 35 (expression)]
+    LESS_THAN     [reduce using rule 35 (expression)]
+    DOUBLE_EQUAL  [reduce using rule 35 (expression)]
+    NOT_EQUAL     [reduce using rule 35 (expression)]
+    $default      reduce using rule 35 (expression)
 
 
 State 79
 
-   11 statement: SCANF L_PAREN expression_list R_PAREN • SEMICOLON
+   11 statement: PRINTF L_PAREN expression_list R_PAREN • SEMICOLON
 
     SEMICOLON  shift, and go to state 88
 
 
 State 80
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
+   27 expression_list: expression_list COMMA • expression
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 89
 
 
 State 81
 
-    5 statement_list: statement_list • statement
-   17 if_else_statement: if_statement ELSE L_BRACE statement_list • R_BRACE
+   12 statement: SCANF L_PAREN expression_list R_PAREN • SEMICOLON
 
-    IDENTIFIER  shift, and go to state 13
-    IF          shift, and go to state 14
-    RETURN      shift, and go to state 15
-    R_BRACE     shift, and go to state 90
-    INT         shift, and go to state 16
-    CHAR        shift, and go to state 17
-    PRINTF      shift, and go to state 18
-    SCANF       shift, and go to state 19
-
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    SEMICOLON  shift, and go to state 90
 
 
 State 82
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
 
-    NUMBER      shift, and go to state 31
-    IDENTIFIER  shift, and go to state 32
-    STRING      shift, and go to state 33
-    POINTER     shift, and go to state 34
-    L_PAREN     shift, and go to state 35
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
 
     expression  go to state 91
 
@@ -1195,7 +1180,7 @@ State 82
 State 83
 
     5 statement_list: statement_list • statement
-   18 if_else_statement: if_else_if_statement ELSE L_BRACE statement_list • R_BRACE
+   18 if_else_statement: if_statement ELSE L_BRACE statement_list • R_BRACE
 
     IDENTIFIER  shift, and go to state 13
     IF          shift, and go to state 14
@@ -1206,25 +1191,61 @@ State 83
     PRINTF      shift, and go to state 18
     SCANF       shift, and go to state 19
 
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 84
 
-   24 identifier_list: identifier_list COMMA IDENTIFIER •
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN • expression R_PAREN L_BRACE statement_list R_BRACE
 
-    $default  reduce using rule 24 (identifier_list)
+    NUMBER      shift, and go to state 33
+    IDENTIFIER  shift, and go to state 34
+    STRING      shift, and go to state 35
+    POINTER     shift, and go to state 36
+    L_PAREN     shift, and go to state 37
+
+    expression  go to state 93
 
 
 State 85
 
-   14 if_statement: IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
+    5 statement_list: statement_list • statement
+   19 if_else_statement: if_else_if_statement ELSE L_BRACE statement_list • R_BRACE
+
+    IDENTIFIER  shift, and go to state 13
+    IF          shift, and go to state 14
+    RETURN      shift, and go to state 15
+    R_BRACE     shift, and go to state 94
+    INT         shift, and go to state 16
+    CHAR        shift, and go to state 17
+    PRINTF      shift, and go to state 18
+    SCANF       shift, and go to state 19
+
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
+
+
+State 86
+
+   25 identifier_list: identifier_list COMMA IDENTIFIER •
+
+    $default  reduce using rule 25 (identifier_list)
+
+
+State 87
+
+   15 if_statement: IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
 
     error       shift, and go to state 12
     IDENTIFIER  shift, and go to state 13
@@ -1235,184 +1256,162 @@ State 85
     PRINTF      shift, and go to state 18
     SCANF       shift, and go to state 19
 
-    statement_list        go to state 93
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
-
-
-State 86
-
-   10 statement: PRINTF L_PAREN expression_list R_PAREN SEMICOLON •
-
-    $default  reduce using rule 10 (statement)
-
-
-State 87
-
-   26 expression_list: expression_list COMMA expression •
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
-
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
-
-    $default  reduce using rule 26 (expression_list)
+    statement_list        go to state 95
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 88
 
-   11 statement: SCANF L_PAREN expression_list R_PAREN SEMICOLON •
+   11 statement: PRINTF L_PAREN expression_list R_PAREN SEMICOLON •
 
     $default  reduce using rule 11 (statement)
 
 
 State 89
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   27 expression_list: expression_list COMMA expression •
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    R_PAREN       shift, and go to state 94
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
+
+    $default  reduce using rule 27 (expression_list)
 
 
 State 90
 
-   17 if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE •
+   12 statement: SCANF L_PAREN expression_list R_PAREN SEMICOLON •
 
-    $default  reduce using rule 17 (if_else_statement)
+    $default  reduce using rule 12 (statement)
 
 
 State 91
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
-   31 expression: expression • GREATER_THAN expression
-   32           | expression • LESS_THAN expression
-   33           | expression • DOUBLE_EQUAL expression
-   34           | expression • NOT_EQUAL expression
-   35           | expression • PLUS expression
-   36           | expression • MINUS expression
-   37           | expression • MULT expression
-   38           | expression • DIV expression
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    MINUS         shift, and go to state 50
-    PLUS          shift, and go to state 51
-    MULT          shift, and go to state 52
-    DIV           shift, and go to state 53
-    R_PAREN       shift, and go to state 95
-    GREATER_THAN  shift, and go to state 55
-    LESS_THAN     shift, and go to state 56
-    DOUBLE_EQUAL  shift, and go to state 57
-    NOT_EQUAL     shift, and go to state 58
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    R_PAREN       shift, and go to state 96
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
 
 State 92
 
-   18 if_else_statement: if_else_if_statement ELSE L_BRACE statement_list R_BRACE •
+   18 if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE •
 
     $default  reduce using rule 18 (if_else_statement)
 
 
 State 93
 
-    5 statement_list: statement_list • statement
-   14 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression • R_PAREN L_BRACE statement_list R_BRACE
+   32 expression: expression • GREATER_THAN expression
+   33           | expression • LESS_THAN expression
+   34           | expression • DOUBLE_EQUAL expression
+   35           | expression • NOT_EQUAL expression
+   36           | expression • PLUS expression
+   37           | expression • MINUS expression
+   38           | expression • MULT expression
+   39           | expression • DIV expression
 
-    IDENTIFIER  shift, and go to state 13
-    IF          shift, and go to state 14
-    RETURN      shift, and go to state 15
-    R_BRACE     shift, and go to state 96
-    INT         shift, and go to state 16
-    CHAR        shift, and go to state 17
-    PRINTF      shift, and go to state 18
-    SCANF       shift, and go to state 19
-
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    MINUS         shift, and go to state 52
+    PLUS          shift, and go to state 53
+    MULT          shift, and go to state 54
+    DIV           shift, and go to state 55
+    R_PAREN       shift, and go to state 97
+    GREATER_THAN  shift, and go to state 57
+    LESS_THAN     shift, and go to state 58
+    DOUBLE_EQUAL  shift, and go to state 59
+    NOT_EQUAL     shift, and go to state 60
 
 
 State 94
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
+   19 if_else_statement: if_else_if_statement ELSE L_BRACE statement_list R_BRACE •
 
-    L_BRACE  shift, and go to state 97
+    $default  reduce using rule 19 (if_else_statement)
 
 
 State 95
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
+    5 statement_list: statement_list • statement
+   15 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
 
-    L_BRACE  shift, and go to state 98
+    IDENTIFIER  shift, and go to state 13
+    IF          shift, and go to state 14
+    RETURN      shift, and go to state 15
+    R_BRACE     shift, and go to state 98
+    INT         shift, and go to state 16
+    CHAR        shift, and go to state 17
+    PRINTF      shift, and go to state 18
+    SCANF       shift, and go to state 19
+
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 96
 
-   14 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
 
-    $default  reduce using rule 14 (if_statement)
+    L_BRACE  shift, and go to state 99
 
 
 State 97
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN • L_BRACE statement_list R_BRACE
 
-    error       shift, and go to state 12
-    IDENTIFIER  shift, and go to state 13
-    IF          shift, and go to state 14
-    RETURN      shift, and go to state 15
-    INT         shift, and go to state 16
-    CHAR        shift, and go to state 17
-    PRINTF      shift, and go to state 18
-    SCANF       shift, and go to state 19
-
-    statement_list        go to state 99
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    L_BRACE  shift, and go to state 100
 
 
 State 98
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
+   15 if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
+
+    $default  reduce using rule 15 (if_statement)
+
+
+State 99
+
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
 
     error       shift, and go to state 12
     IDENTIFIER  shift, and go to state 13
@@ -1423,71 +1422,96 @@ State 98
     PRINTF      shift, and go to state 18
     SCANF       shift, and go to state 19
 
-    statement_list        go to state 100
-    statement             go to state 21
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
-
-
-State 99
-
-    5 statement_list: statement_list • statement
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
-
-    IDENTIFIER  shift, and go to state 13
-    IF          shift, and go to state 14
-    RETURN      shift, and go to state 15
-    R_BRACE     shift, and go to state 101
-    INT         shift, and go to state 16
-    CHAR        shift, and go to state 17
-    PRINTF      shift, and go to state 18
-    SCANF       shift, and go to state 19
-
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    statement_list        go to state 101
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 100
 
-    5 statement_list: statement_list • statement
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE • statement_list R_BRACE
 
+    error       shift, and go to state 12
     IDENTIFIER  shift, and go to state 13
     IF          shift, and go to state 14
     RETURN      shift, and go to state 15
-    R_BRACE     shift, and go to state 102
     INT         shift, and go to state 16
     CHAR        shift, and go to state 17
     PRINTF      shift, and go to state 18
     SCANF       shift, and go to state 19
 
-    statement             go to state 40
-    if_statement          go to state 22
-    if_else_if_statement  go to state 23
-    if_else_statement     go to state 24
-    assignment            go to state 25
-    declaration           go to state 26
-    type                  go to state 27
+    statement_list        go to state 102
+    error_statement       go to state 21
+    statement             go to state 22
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 101
 
-   15 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
+    5 statement_list: statement_list • statement
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
 
-    $default  reduce using rule 15 (if_else_if_statement)
+    IDENTIFIER  shift, and go to state 13
+    IF          shift, and go to state 14
+    RETURN      shift, and go to state 15
+    R_BRACE     shift, and go to state 103
+    INT         shift, and go to state 16
+    CHAR        shift, and go to state 17
+    PRINTF      shift, and go to state 18
+    SCANF       shift, and go to state 19
+
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
 
 
 State 102
 
-   16 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
+    5 statement_list: statement_list • statement
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list • R_BRACE
+
+    IDENTIFIER  shift, and go to state 13
+    IF          shift, and go to state 14
+    RETURN      shift, and go to state 15
+    R_BRACE     shift, and go to state 104
+    INT         shift, and go to state 16
+    CHAR        shift, and go to state 17
+    PRINTF      shift, and go to state 18
+    SCANF       shift, and go to state 19
+
+    statement             go to state 42
+    if_statement          go to state 23
+    if_else_if_statement  go to state 24
+    if_else_statement     go to state 25
+    assignment            go to state 26
+    declaration           go to state 27
+    type                  go to state 28
+
+
+State 103
+
+   16 if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
 
     $default  reduce using rule 16 (if_else_if_statement)
+
+
+State 104
+
+   17 if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE •
+
+    $default  reduce using rule 17 (if_else_if_statement)

@@ -67,15 +67,16 @@
 
 
 /* First part of user prologue.  */
-#line 1 "/home/kali/Desktop/hw-bison/parser.y"
+#line 1 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include "lexer.h"
 
 void yyerror(const char *msg);
 
-#line 79 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 80 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -141,21 +142,34 @@ enum yysymbol_kind_t
   YYSYMBOL_include_statement = 35,         /* include_statement  */
   YYSYMBOL_main_func = 36,                 /* main_func  */
   YYSYMBOL_statement_list = 37,            /* statement_list  */
-  YYSYMBOL_statement = 38,                 /* statement  */
-  YYSYMBOL_if_statement = 39,              /* if_statement  */
-  YYSYMBOL_if_else_if_statement = 40,      /* if_else_if_statement  */
-  YYSYMBOL_if_else_statement = 41,         /* if_else_statement  */
-  YYSYMBOL_assignment = 42,                /* assignment  */
-  YYSYMBOL_declaration = 43,               /* declaration  */
-  YYSYMBOL_type = 44,                      /* type  */
-  YYSYMBOL_identifier_list = 45,           /* identifier_list  */
-  YYSYMBOL_expression_list = 46,           /* expression_list  */
-  YYSYMBOL_expression = 47                 /* expression  */
+  YYSYMBOL_error_statement = 38,           /* error_statement  */
+  YYSYMBOL_statement = 39,                 /* statement  */
+  YYSYMBOL_if_statement = 40,              /* if_statement  */
+  YYSYMBOL_if_else_if_statement = 41,      /* if_else_if_statement  */
+  YYSYMBOL_if_else_statement = 42,         /* if_else_statement  */
+  YYSYMBOL_assignment = 43,                /* assignment  */
+  YYSYMBOL_declaration = 44,               /* declaration  */
+  YYSYMBOL_type = 45,                      /* type  */
+  YYSYMBOL_identifier_list = 46,           /* identifier_list  */
+  YYSYMBOL_expression_list = 47,           /* expression_list  */
+  YYSYMBOL_expression = 48                 /* expression  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
 
 
+/* Unqualified %code blocks.  */
+#line 10 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+
+void printWithLineNo(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    printf("%d: ", yylineno);
+    vprintf(format, args);
+    va_end(args);
+}
+
+#line 173 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
 
 #ifdef short
 # undef short
@@ -481,16 +495,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   206
+#define YYLAST   208
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  33
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  15
+#define YYNNTS  16
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  40
+#define YYNRULES  41
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  103
+#define YYNSTATES  105
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   286
@@ -542,11 +556,11 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    32,    32,    35,    38,    41,    42,    43,    44,    47,
-      48,    49,    50,    51,    52,    57,    59,    60,    63,    64,
-      67,    70,    73,    74,    77,    78,    81,    82,    85,    86,
-      87,    88,    89,    90,    91,    92,    93,    94,    95,    96,
-      97
+       0,    43,    43,    46,    49,    52,    53,    54,    57,    58,
+      61,    62,    63,    64,    65,    66,    71,    73,    74,    77,
+      78,    81,    84,    87,    88,    91,    92,    95,    96,    99,
+     100,   101,   102,   103,   104,   105,   106,   107,   108,   109,
+     110,   111
 };
 #endif
 
@@ -568,9 +582,9 @@ static const char *const yytname[] =
   "INT", "CHAR", "PRINTF", "SCANF", "INCLUDE", "STDIO_H", "COMMA", "MAIN",
   "GREATER_THAN", "LESS_THAN", "DOUBLE_EQUAL", "NOT_EQUAL", "'\\n'",
   "$accept", "program", "include_statement", "main_func", "statement_list",
-  "statement", "if_statement", "if_else_if_statement", "if_else_statement",
-  "assignment", "declaration", "type", "identifier_list",
-  "expression_list", "expression", YY_NULLPTR
+  "error_statement", "statement", "if_statement", "if_else_if_statement",
+  "if_else_statement", "assignment", "declaration", "type",
+  "identifier_list", "expression_list", "expression", YY_NULLPTR
 };
 
 static const char *
@@ -580,7 +594,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-53)
+#define YYPACT_NINF (-64)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -594,17 +608,17 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     -22,   -19,     5,   -17,   -53,   -53,   -13,   -53,     7,     4,
-       0,     3,    -5,    14,    25,   114,   -53,   -53,    52,    63,
-     121,   -53,    26,    77,   -53,    67,    73,    89,   -53,   114,
-     114,   -53,   -53,   -53,   -53,   114,    41,   114,   114,   -53,
-     -53,     1,     2,   -53,   -53,   -53,    79,    85,    19,    46,
-     114,   114,   114,   114,   -53,   114,   114,   114,   114,    39,
-      85,   111,    95,     3,    96,     3,   108,   109,   -53,   175,
-     175,    93,    93,    85,    85,    85,    85,   113,   114,   116,
-     114,   127,   114,   147,   -53,     3,   -53,    85,   -53,    71,
-     -53,    78,   -53,   153,   123,   129,   -53,     3,     3,   173,
-     179,   -53,   -53
+     -17,   -12,     8,    -1,   -64,   -64,     6,   -64,     7,    18,
+      34,     5,   -16,    53,    42,   116,   -64,   -64,    54,    65,
+     123,   -64,   -64,    79,    86,   -64,    69,    76,   103,   -64,
+     -64,   116,   116,   -64,   -64,   -64,   -64,   116,    43,   116,
+     116,   -64,   -64,    -2,     3,   -64,   -64,   -64,    88,    87,
+      19,    48,   116,   116,   116,   116,   -64,   116,   116,   116,
+     116,    -5,    87,    26,    97,     5,    98,     5,   124,   112,
+     -64,   177,   177,    95,    95,    87,    87,    87,    87,   115,
+     116,   118,   116,   129,   116,   149,   -64,     5,   -64,    87,
+     -64,    73,   -64,    80,   -64,   155,   122,   125,   -64,     5,
+       5,   175,   181,   -64,   -64
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -613,30 +627,30 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     3,     1,     0,     2,     0,     0,
-       0,     0,     8,     0,     0,     0,    22,    23,     0,     0,
-       0,     5,     0,     0,     9,     0,     0,     0,     7,     0,
-       0,    28,    29,    30,    31,     0,     0,     0,     0,     4,
-       6,     0,     0,    14,    13,    24,    21,    20,     0,     0,
-       0,     0,     0,     0,    10,     0,     0,     0,     0,     0,
-      26,     0,     0,     0,     0,     0,     0,     0,    40,    37,
-      36,    38,    39,    32,    33,    34,    35,     0,     0,     0,
-       0,     0,     0,     0,    25,     0,    11,    27,    12,     0,
-      18,     0,    19,     0,     0,     0,    15,     0,     0,     0,
-       0,    16,    17
+       0,     0,     0,     0,     0,     0,    23,    24,     0,     0,
+       0,     7,     5,     0,     0,    10,     0,     0,     0,     8,
+       9,     0,     0,    29,    30,    31,    32,     0,     0,     0,
+       0,     4,     6,     0,     0,    15,    14,    25,    22,    21,
+       0,     0,     0,     0,     0,     0,    11,     0,     0,     0,
+       0,     0,    27,     0,     0,     0,     0,     0,     0,     0,
+      41,    38,    37,    39,    40,    33,    34,    35,    36,     0,
+       0,     0,     0,     0,     0,     0,    26,     0,    12,    28,
+      13,     0,    19,     0,    20,     0,     0,     0,    16,     0,
+       0,     0,     0,    17,    18
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -53,   -53,   -53,   -53,   -52,   -20,   -53,   -53,   -53,   -53,
-     -53,   -53,   -53,   100,   -14
+     -64,   -64,   -64,   -64,   -63,   -64,   -20,   -64,   -64,   -64,
+     -64,   -64,   -64,   -64,   100,   -14
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
        0,     2,     3,     7,    20,    21,    22,    23,    24,    25,
-      26,    27,    46,    59,    60
+      26,    27,    28,    48,    61,    62
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -644,52 +658,52 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      40,    36,     1,     6,    12,     5,     4,    13,    62,    64,
-      14,    81,    15,    83,     8,    47,    48,    11,    63,    65,
-      10,    49,     9,    16,    17,    18,    19,    28,    29,    50,
-      51,    52,    53,    93,    41,    67,    69,    70,    71,    72,
-      30,    73,    74,    75,    76,    99,   100,    55,    56,    57,
-      58,    50,    51,    52,    53,    77,    50,    51,    52,    53,
-      54,    40,    68,    40,    87,    78,    89,    37,    91,    55,
-      56,    57,    58,    40,    55,    56,    57,    58,    38,    40,
-      40,    50,    51,    52,    53,    42,    43,    94,    50,    51,
-      52,    53,    44,    45,    95,    50,    51,    52,    53,    55,
-      56,    57,    58,    50,    51,    66,    55,    56,    57,    58,
-      80,    82,    84,    55,    56,    57,    58,    31,    32,    33,
-      34,    55,    56,    57,    58,    13,    85,    79,    14,    35,
-      15,    13,    86,     0,    14,    88,    15,    78,    61,    39,
-      97,    16,    17,    18,    19,    90,    98,    16,    17,    18,
-      19,    13,     0,     0,    14,     0,    15,    13,     0,     0,
-      14,     0,    15,     0,     0,    92,     0,    16,    17,    18,
-      19,    96,     0,    16,    17,    18,    19,    13,     0,     0,
-      14,     0,    15,    13,     0,     0,    14,     0,    15,     0,
-       0,   101,     0,    16,    17,    18,    19,   102,     0,    16,
-      17,    18,    19,    55,    56,    57,    58
+      42,    38,    83,    29,    85,    64,    12,     1,     5,    13,
+      66,    79,    14,     4,    15,    65,    30,    49,    50,     6,
+      67,    80,     9,    51,    95,    16,    17,    18,    19,    52,
+      53,    54,    55,     8,    10,    69,   101,   102,    71,    72,
+      73,    74,    81,    75,    76,    77,    78,    57,    58,    59,
+      60,    11,    80,    52,    53,    54,    55,    32,    52,    53,
+      54,    55,    56,    42,    70,    42,    89,    31,    91,    39,
+      93,    57,    58,    59,    60,    42,    57,    58,    59,    60,
+      40,    42,    42,    52,    53,    54,    55,    43,    45,    96,
+      52,    53,    54,    55,    44,    46,    97,    52,    53,    54,
+      55,    57,    58,    59,    60,    52,    53,    47,    57,    58,
+      59,    60,    82,    84,    68,    57,    58,    59,    60,    33,
+      34,    35,    36,    57,    58,    59,    60,    13,    86,    87,
+      14,    37,    15,    13,    88,     0,    14,    90,    15,    99,
+      63,    41,   100,    16,    17,    18,    19,    92,     0,    16,
+      17,    18,    19,    13,     0,     0,    14,     0,    15,    13,
+       0,     0,    14,     0,    15,     0,     0,    94,     0,    16,
+      17,    18,    19,    98,     0,    16,    17,    18,    19,    13,
+       0,     0,    14,     0,    15,    13,     0,     0,    14,     0,
+      15,     0,     0,   103,     0,    16,    17,    18,    19,   104,
+       0,    16,    17,    18,    19,    57,    58,    59,    60
 };
 
 static const yytype_int8 yycheck[] =
 {
-      20,    15,    24,    20,     1,     0,    25,     4,     7,     7,
-       7,    63,     9,    65,    27,    29,    30,    17,    17,    17,
-      16,    35,    15,    20,    21,    22,    23,    32,    14,    10,
-      11,    12,    13,    85,     8,    16,    50,    51,    52,    53,
-      15,    55,    56,    57,    58,    97,    98,    28,    29,    30,
-      31,    10,    11,    12,    13,    16,    10,    11,    12,    13,
-      19,    81,    16,    83,    78,    26,    80,    15,    82,    28,
-      29,    30,    31,    93,    28,    29,    30,    31,    15,    99,
-     100,    10,    11,    12,    13,     8,    19,    16,    10,    11,
-      12,    13,    19,     4,    16,    10,    11,    12,    13,    28,
-      29,    30,    31,    10,    11,    26,    28,    29,    30,    31,
-      15,    15,     4,    28,    29,    30,    31,     3,     4,     5,
-       6,    28,    29,    30,    31,     4,    17,    16,     7,    15,
-       9,     4,    19,    -1,     7,    19,     9,    26,    38,    18,
-      17,    20,    21,    22,    23,    18,    17,    20,    21,    22,
-      23,     4,    -1,    -1,     7,    -1,     9,     4,    -1,    -1,
-       7,    -1,     9,    -1,    -1,    18,    -1,    20,    21,    22,
-      23,    18,    -1,    20,    21,    22,    23,     4,    -1,    -1,
-       7,    -1,     9,     4,    -1,    -1,     7,    -1,     9,    -1,
-      -1,    18,    -1,    20,    21,    22,    23,    18,    -1,    20,
-      21,    22,    23,    28,    29,    30,    31
+      20,    15,    65,    19,    67,     7,     1,    24,     0,     4,
+       7,    16,     7,    25,     9,    17,    32,    31,    32,    20,
+      17,    26,    15,    37,    87,    20,    21,    22,    23,    10,
+      11,    12,    13,    27,    16,    16,    99,   100,    52,    53,
+      54,    55,    16,    57,    58,    59,    60,    28,    29,    30,
+      31,    17,    26,    10,    11,    12,    13,    15,    10,    11,
+      12,    13,    19,    83,    16,    85,    80,    14,    82,    15,
+      84,    28,    29,    30,    31,    95,    28,    29,    30,    31,
+      15,   101,   102,    10,    11,    12,    13,     8,    19,    16,
+      10,    11,    12,    13,     8,    19,    16,    10,    11,    12,
+      13,    28,    29,    30,    31,    10,    11,     4,    28,    29,
+      30,    31,    15,    15,    26,    28,    29,    30,    31,     3,
+       4,     5,     6,    28,    29,    30,    31,     4,     4,    17,
+       7,    15,     9,     4,    19,    -1,     7,    19,     9,    17,
+      40,    18,    17,    20,    21,    22,    23,    18,    -1,    20,
+      21,    22,    23,     4,    -1,    -1,     7,    -1,     9,     4,
+      -1,    -1,     7,    -1,     9,    -1,    -1,    18,    -1,    20,
+      21,    22,    23,    18,    -1,    20,    21,    22,    23,     4,
+      -1,    -1,     7,    -1,     9,     4,    -1,    -1,     7,    -1,
+       9,    -1,    -1,    18,    -1,    20,    21,    22,    23,    18,
+      -1,    20,    21,    22,    23,    28,    29,    30,    31
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -698,35 +712,35 @@ static const yytype_int8 yystos[] =
 {
        0,    24,    34,    35,    25,     0,    20,    36,    27,    15,
       16,    17,     1,     4,     7,     9,    20,    21,    22,    23,
-      37,    38,    39,    40,    41,    42,    43,    44,    32,    14,
-      15,     3,     4,     5,     6,    15,    47,    15,    15,    18,
-      38,     8,     8,    19,    19,     4,    45,    47,    47,    47,
-      10,    11,    12,    13,    19,    28,    29,    30,    31,    46,
-      47,    46,     7,    17,     7,    17,    26,    16,    16,    47,
-      47,    47,    47,    47,    47,    47,    47,    16,    26,    16,
-      15,    37,    15,    37,     4,    17,    19,    47,    19,    47,
-      18,    47,    18,    37,    16,    16,    18,    17,    17,    37,
-      37,    18,    18
+      37,    38,    39,    40,    41,    42,    43,    44,    45,    19,
+      32,    14,    15,     3,     4,     5,     6,    15,    48,    15,
+      15,    18,    39,     8,     8,    19,    19,     4,    46,    48,
+      48,    48,    10,    11,    12,    13,    19,    28,    29,    30,
+      31,    47,    48,    47,     7,    17,     7,    17,    26,    16,
+      16,    48,    48,    48,    48,    48,    48,    48,    48,    16,
+      26,    16,    15,    37,    15,    37,     4,    17,    19,    48,
+      19,    48,    18,    48,    18,    37,    16,    16,    18,    17,
+      17,    37,    37,    18,    18
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    33,    34,    35,    36,    37,    37,    37,    37,    38,
-      38,    38,    38,    38,    38,    39,    40,    40,    41,    41,
-      42,    43,    44,    44,    45,    45,    46,    46,    47,    47,
-      47,    47,    47,    47,    47,    47,    47,    47,    47,    47,
-      47
+       0,    33,    34,    35,    36,    37,    37,    37,    38,    38,
+      39,    39,    39,    39,    39,    39,    40,    41,    41,    42,
+      42,    43,    44,    45,    45,    46,    46,    47,    47,    48,
+      48,    48,    48,    48,    48,    48,    48,    48,    48,    48,
+      48,    48
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     2,     7,     1,     2,     2,     1,     1,
-       3,     5,     5,     2,     2,     7,     9,     9,     5,     5,
-       3,     2,     1,     1,     1,     3,     1,     3,     1,     1,
-       1,     1,     3,     3,     3,     3,     3,     3,     3,     3,
-       3
+       0,     2,     2,     2,     7,     1,     2,     1,     2,     2,
+       1,     3,     5,     5,     2,     2,     7,     9,     9,     5,
+       5,     3,     2,     1,     1,     1,     3,     1,     3,     1,
+       1,     1,     1,     3,     3,     3,     3,     3,     3,     3,
+       3,     3
 };
 
 
@@ -1574,235 +1588,241 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: include_statement main_func  */
-#line 32 "/home/kali/Desktop/hw-bison/parser.y"
-                                     { printf("Input is valid.\n"); }
-#line 1580 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 43 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                     { printWithLineNo("End of program.\n"); }
+#line 1594 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
   case 3: /* include_statement: INCLUDE STDIO_H  */
-#line 35 "/home/kali/Desktop/hw-bison/parser.y"
-                                   { printf("%Include Statement.\n"); }
-#line 1586 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 46 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                   { printWithLineNo("%Include Statement.\n"); }
+#line 1600 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
   case 4: /* main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE  */
-#line 38 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                   { printf("Main Function.\n"); }
-#line 1592 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 49 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                   { printWithLineNo("Main Statement.\n"); }
+#line 1606 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
   case 5: /* statement_list: statement  */
-#line 41 "/home/kali/Desktop/hw-bison/parser.y"
-                          { printf("Statement\n"); }
-#line 1598 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 52 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                          { printWithLineNo("Statement\n"); }
+#line 1612 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
   case 6: /* statement_list: statement_list statement  */
-#line 42 "/home/kali/Desktop/hw-bison/parser.y"
-                                         { printf("Statement\n"); }
-#line 1604 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 53 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                         { printWithLineNo("Statement\n"); }
+#line 1618 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 7: /* statement_list: error '\n'  */
-#line 43 "/home/kali/Desktop/hw-bison/parser.y"
-                           { yyerrok; /* 繼續解析 */ }
-#line 1610 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 7: /* statement_list: error_statement  */
+#line 54 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                { printWithLineNo("Error: Invalid statement\n"); yyerrok; }
+#line 1624 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 8: /* statement_list: error  */
-#line 44 "/home/kali/Desktop/hw-bison/parser.y"
-                      { yyerrok; /* 繼續解析 */ }
-#line 1616 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 8: /* error_statement: error SEMICOLON  */
+#line 57 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                 { printWithLineNo("Error statement\n"); }
+#line 1630 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 10: /* statement: RETURN expression SEMICOLON  */
-#line 48 "/home/kali/Desktop/hw-bison/parser.y"
-                                       { printf("Return statement\n"); }
-#line 1622 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 9: /* error_statement: error '\n'  */
+#line 58 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                            { printWithLineNo("Error statement\n"); yyerrok; }
+#line 1636 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 11: /* statement: PRINTF L_PAREN expression_list R_PAREN SEMICOLON  */
-#line 49 "/home/kali/Desktop/hw-bison/parser.y"
-                                                            { printf("Printf statement\n"); }
-#line 1628 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 11: /* statement: RETURN expression SEMICOLON  */
+#line 62 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                       { printWithLineNo("Return statement\n"); }
+#line 1642 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 12: /* statement: SCANF L_PAREN expression_list R_PAREN SEMICOLON  */
-#line 50 "/home/kali/Desktop/hw-bison/parser.y"
-                                                           { printf("Scanf statement\n"); }
-#line 1634 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 12: /* statement: PRINTF L_PAREN expression_list R_PAREN SEMICOLON  */
+#line 63 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                            { printWithLineNo("Printf statement\n"); }
+#line 1648 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 13: /* statement: declaration SEMICOLON  */
-#line 51 "/home/kali/Desktop/hw-bison/parser.y"
-                                 { printf("Declaration\n"); }
-#line 1640 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 13: /* statement: SCANF L_PAREN expression_list R_PAREN SEMICOLON  */
+#line 64 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                           { printWithLineNo("Scanf statement\n"); }
+#line 1654 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 14: /* statement: assignment SEMICOLON  */
-#line 52 "/home/kali/Desktop/hw-bison/parser.y"
-                                { printf("Assignment\n"); }
-#line 1646 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 14: /* statement: declaration SEMICOLON  */
+#line 65 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                 { printWithLineNo("Declaration\n"); }
+#line 1660 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 15: /* if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
-#line 57 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                         { printf("IF statement\n"); }
-#line 1652 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 15: /* statement: assignment SEMICOLON  */
+#line 66 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                { printWithLineNo("Assignment\n"); }
+#line 1666 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 16: /* if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
-#line 59 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                                                     { printf("IF-ELSE-IF statement\n"); }
-#line 1658 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 16: /* if_statement: IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
+#line 71 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                         { printWithLineNo("IF statement\n"); }
+#line 1672 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 17: /* if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
-#line 60 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                                                             { printf("IF-ELSE-IF statement\n"); }
-#line 1664 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 17: /* if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
+#line 73 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                                                     { printWithLineNo("IF-ELSE-IF statement\n"); }
+#line 1678 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 18: /* if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE  */
-#line 63 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                    { printf("IF-ELSE statement\n"); }
-#line 1670 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 18: /* if_else_if_statement: if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE  */
+#line 74 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                                                             { printWithLineNo("IF-ELSE-IF statement\n"); }
+#line 1684 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 19: /* if_else_statement: if_else_if_statement ELSE L_BRACE statement_list R_BRACE  */
-#line 64 "/home/kali/Desktop/hw-bison/parser.y"
-                                                                            { printf("IF-ELSE-IF-ELSE statement\n"); }
-#line 1676 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 19: /* if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE  */
+#line 77 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                    { printWithLineNo("IF-ELSE statement\n"); }
+#line 1690 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 20: /* assignment: IDENTIFIER EQUAL expression  */
-#line 67 "/home/kali/Desktop/hw-bison/parser.y"
-                                        { printf("Assignment: %s\n", (yyvsp[-2].sval)); }
-#line 1682 "/home/kali/Desktop/hw-bison/build/parser.c"
+  case 20: /* if_else_statement: if_else_if_statement ELSE L_BRACE statement_list R_BRACE  */
+#line 78 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                                                            { printWithLineNo("IF-ELSE-IF-ELSE statement\n"); }
+#line 1696 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 21: /* declaration: type identifier_list  */
-#line 70 "/home/kali/Desktop/hw-bison/parser.y"
+  case 21: /* assignment: IDENTIFIER EQUAL expression  */
+#line 81 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
+                                        { printWithLineNo("Assignment: %s\n", (yyvsp[-2].sval)); }
+#line 1702 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
+    break;
+
+  case 22: /* declaration: type identifier_list  */
+#line 84 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                   { printf("Declaration\n"); }
-#line 1688 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1708 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 22: /* type: INT  */
-#line 73 "/home/kali/Desktop/hw-bison/parser.y"
+  case 23: /* type: INT  */
+#line 87 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
           { printf("Type: int\n"); }
-#line 1694 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1714 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 23: /* type: CHAR  */
-#line 74 "/home/kali/Desktop/hw-bison/parser.y"
+  case 24: /* type: CHAR  */
+#line 88 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
            { printf("Type: char\n"); }
-#line 1700 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1720 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 24: /* identifier_list: IDENTIFIER  */
-#line 77 "/home/kali/Desktop/hw-bison/parser.y"
+  case 25: /* identifier_list: IDENTIFIER  */
+#line 91 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                             { printf("Identifier: %s\n", (yyvsp[0].sval)); }
-#line 1706 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1726 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 25: /* identifier_list: identifier_list COMMA IDENTIFIER  */
-#line 78 "/home/kali/Desktop/hw-bison/parser.y"
+  case 26: /* identifier_list: identifier_list COMMA IDENTIFIER  */
+#line 92 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                                   { printf("Identifier: %s\n", (yyvsp[0].sval)); }
-#line 1712 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1732 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 26: /* expression_list: expression  */
-#line 81 "/home/kali/Desktop/hw-bison/parser.y"
+  case 27: /* expression_list: expression  */
+#line 95 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                             { printf("Expression\n"); }
-#line 1718 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1738 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 27: /* expression_list: expression_list COMMA expression  */
-#line 82 "/home/kali/Desktop/hw-bison/parser.y"
+  case 28: /* expression_list: expression_list COMMA expression  */
+#line 96 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                                    { printf("Expression\n"); }
-#line 1724 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1744 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 28: /* expression: NUMBER  */
-#line 85 "/home/kali/Desktop/hw-bison/parser.y"
+  case 29: /* expression: NUMBER  */
+#line 99 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                    { printf("Number: %i\n", (yyvsp[0].dval)); }
-#line 1730 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1750 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 29: /* expression: IDENTIFIER  */
-#line 86 "/home/kali/Desktop/hw-bison/parser.y"
+  case 30: /* expression: IDENTIFIER  */
+#line 100 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                        { printf("Identifier: %s\n", (yyvsp[0].sval)); }
-#line 1736 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1756 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 30: /* expression: STRING  */
-#line 87 "/home/kali/Desktop/hw-bison/parser.y"
+  case 31: /* expression: STRING  */
+#line 101 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                    { printf("STRING: %s\n", (yyvsp[0].sval)); }
-#line 1742 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1762 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 31: /* expression: POINTER  */
-#line 88 "/home/kali/Desktop/hw-bison/parser.y"
+  case 32: /* expression: POINTER  */
+#line 102 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                     { printf("STRING: %s\n", (yyvsp[0].sval)); }
-#line 1748 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1768 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 32: /* expression: expression GREATER_THAN expression  */
-#line 89 "/home/kali/Desktop/hw-bison/parser.y"
+  case 33: /* expression: expression GREATER_THAN expression  */
+#line 103 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                                { printf("Greater-than expression\n"); }
-#line 1754 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1774 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 33: /* expression: expression LESS_THAN expression  */
-#line 90 "/home/kali/Desktop/hw-bison/parser.y"
+  case 34: /* expression: expression LESS_THAN expression  */
+#line 104 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                             { printf("Less-than expression\n"); }
-#line 1760 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1780 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 34: /* expression: expression DOUBLE_EQUAL expression  */
-#line 91 "/home/kali/Desktop/hw-bison/parser.y"
+  case 35: /* expression: expression DOUBLE_EQUAL expression  */
+#line 105 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                                { printf("Equal expression\n"); }
-#line 1766 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1786 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 35: /* expression: expression NOT_EQUAL expression  */
-#line 92 "/home/kali/Desktop/hw-bison/parser.y"
+  case 36: /* expression: expression NOT_EQUAL expression  */
+#line 106 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                             { printf("Not equal expression\n"); }
-#line 1772 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1792 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 36: /* expression: expression PLUS expression  */
-#line 93 "/home/kali/Desktop/hw-bison/parser.y"
+  case 37: /* expression: expression PLUS expression  */
+#line 107 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                        { printf("Addition expression\n"); }
-#line 1778 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1798 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 37: /* expression: expression MINUS expression  */
-#line 94 "/home/kali/Desktop/hw-bison/parser.y"
+  case 38: /* expression: expression MINUS expression  */
+#line 108 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                         { printf("Subtraction expression\n"); }
-#line 1784 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1804 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 38: /* expression: expression MULT expression  */
-#line 95 "/home/kali/Desktop/hw-bison/parser.y"
+  case 39: /* expression: expression MULT expression  */
+#line 109 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                        { printf("Multiplication expression\n"); }
-#line 1790 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1810 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 39: /* expression: expression DIV expression  */
-#line 96 "/home/kali/Desktop/hw-bison/parser.y"
+  case 40: /* expression: expression DIV expression  */
+#line 110 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                       { printf("Division expression\n"); }
-#line 1796 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1816 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
-  case 40: /* expression: L_PAREN expression R_PAREN  */
-#line 97 "/home/kali/Desktop/hw-bison/parser.y"
+  case 41: /* expression: L_PAREN expression R_PAREN  */
+#line 111 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
                                        { printf("Parenthesized expression\n"); }
-#line 1802 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1822 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
     break;
 
 
-#line 1806 "/home/kali/Desktop/hw-bison/build/parser.c"
+#line 1826 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c"
 
       default: break;
     }
@@ -2031,7 +2051,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 100 "/home/kali/Desktop/hw-bison/parser.y"
+#line 114 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
 
 
 int main(int argc, char** argv) {

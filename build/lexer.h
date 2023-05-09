@@ -2,9 +2,9 @@
 #define yyHEADER_H 1
 #define yyIN_HEADER 1
 
-#line 6 "/home/kali/Desktop/hw-bison/build/lexer.h"
+#line 6 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.h"
 
-#line 8 "/home/kali/Desktop/hw-bison/build/lexer.h"
+#line 8 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.h"
 
 #define  YY_INT_ALIGNED short int
 
@@ -469,9 +469,9 @@ extern int yylex (void);
 #undef yyTABLES_NAME
 #endif
 
-#line 56 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 56 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 
 
-#line 476 "/home/kali/Desktop/hw-bison/build/lexer.h"
+#line 476 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.h"
 #undef yyIN_HEADER
 #endif /* yyHEADER_H */

@@ -1,10 +1,21 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include "lexer.h"
 
 void yyerror(const char *msg);
 %}
+
+%code {
+void printWithLineNo(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    printf("%d: ", yylineno);
+    vprintf(format, args);
+    va_end(args);
+}
+}
 
 %union {
     int dval;
@@ -29,72 +40,75 @@ void yyerror(const char *msg);
 %start program
 
 %%
-program: include_statement main_func { printf("Input is valid.\n"); }
+program: include_statement main_func { printWithLineNo("End of program.\n"); }
        ;
 
-include_statement: INCLUDE STDIO_H { printf("%Include Statement.\n"); }
+include_statement: INCLUDE STDIO_H { printWithLineNo("%Include Statement.\n"); }
             ;
 
-main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE { printf("Main Function.\n"); }
+main_func: INT MAIN L_PAREN R_PAREN L_BRACE statement_list R_BRACE { printWithLineNo("Main Statement.\n"); }
          ;
 
-statement_list: statement { printf("Statement\n"); }
-              | statement_list statement { printf("Statement\n"); }
-              | error '\n' { yyerrok; /* 繼續解析 */ }
-              | error { yyerrok; /* 繼續解析 */ }
+statement_list: statement { printWithLineNo("Statement\n"); }
+              | statement_list statement { printWithLineNo("Statement\n"); }
+              | error_statement { printWithLineNo("Error: Invalid statement\n"); yyerrok; }
               ;
 
+error_statement: error SEMICOLON { printWithLineNo("Error statement\n"); }
+               | error '\n' { printWithLineNo("Error statement\n"); yyerrok; }
+               ;
+
 statement: if_else_statement
-         | RETURN expression SEMICOLON { printf("Return statement\n"); }
-         | PRINTF L_PAREN expression_list R_PAREN SEMICOLON { printf("Printf statement\n"); }
-         | SCANF L_PAREN expression_list R_PAREN SEMICOLON { printf("Scanf statement\n"); }
-         | declaration SEMICOLON { printf("Declaration\n"); }
-         | assignment SEMICOLON { printf("Assignment\n"); } 
+         | RETURN expression SEMICOLON { printWithLineNo("Return statement\n"); }
+         | PRINTF L_PAREN expression_list R_PAREN SEMICOLON { printWithLineNo("Printf statement\n"); }
+         | SCANF L_PAREN expression_list R_PAREN SEMICOLON { printWithLineNo("Scanf statement\n"); }
+         | declaration SEMICOLON { printWithLineNo("Declaration\n"); }
+         | assignment SEMICOLON { printWithLineNo("Assignment\n"); } 
          ;
 
 
 if_statement:
-            IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF statement\n"); }
+            IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printWithLineNo("IF statement\n"); }
 
-if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF statement\n"); }
-                    | if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF statement\n"); }
+if_else_if_statement: if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printWithLineNo("IF-ELSE-IF statement\n"); }
+                    | if_else_if_statement ELSE IF L_PAREN expression R_PAREN L_BRACE statement_list R_BRACE { printWithLineNo("IF-ELSE-IF statement\n"); }
                     ;
 
-if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE statement\n"); }
-                 | if_else_if_statement ELSE L_BRACE statement_list R_BRACE { printf("IF-ELSE-IF-ELSE statement\n"); }
+if_else_statement: if_statement ELSE L_BRACE statement_list R_BRACE { printWithLineNo("IF-ELSE statement\n"); }
+                 | if_else_if_statement ELSE L_BRACE statement_list R_BRACE { printWithLineNo("IF-ELSE-IF-ELSE statement\n"); }
                  ;
 
-assignment: IDENTIFIER EQUAL expression { printf("Assignment: %s\n", $1); }
+assignment: IDENTIFIER EQUAL expression { printWithLineNo("Assignment: %s\n", $1); }
           ;
 
-declaration: type identifier_list { printf("Declaration\n"); }
+declaration: type identifier_list { printWithLineNo("Declaration\n"); }
            ;
 
-type: INT { printf("Type: int\n"); }
-    | CHAR { printf("Type: char\n"); }
+type: INT { printWithLineNo("Type: int\n"); }
+    | CHAR { prprintWithLineNointf("Type: char\n"); }
     ;
 
-identifier_list: IDENTIFIER { printf("Identifier: %s\n", $1); }
-               | identifier_list COMMA IDENTIFIER { printf("Identifier: %s\n", $3); }
+identifier_list: IDENTIFIER { printWithLineNo("Identifier: %s\n", $1); }
+               | identifier_list COMMA IDENTIFIER { printWithLineNo("Identifier: %s\n", $3); }
                ;
 
-expression_list: expression { printf("Expression\n"); }
-                | expression_list COMMA expression { printf("Expression\n"); }
+expression_list: expression { printWithLineNo("Expression\n"); }
+                | expression_list COMMA expression { printWithLineNo("Expression\n"); }
                 ;
 
-expression: NUMBER { printf("Number: %i\n", $1); }
-          | IDENTIFIER { printf("Identifier: %s\n", $1); }
-          | STRING { printf("STRING: %s\n", $1); }
-          | POINTER { printf("STRING: %s\n", $1); }
-          | expression GREATER_THAN expression { printf("Greater-than expression\n"); }
-          | expression LESS_THAN expression { printf("Less-than expression\n"); }
-          | expression DOUBLE_EQUAL expression { printf("Equal expression\n"); }
-          | expression NOT_EQUAL expression { printf("Not equal expression\n"); }
-          | expression PLUS expression { printf("Addition expression\n"); }
-          | expression MINUS expression { printf("Subtraction expression\n"); }
-          | expression MULT expression { printf("Multiplication expression\n"); }
-          | expression DIV expression { printf("Division expression\n"); }
-          | L_PAREN expression R_PAREN { printf("Parenthesized expression\n"); }
+expression: NUMBER { printWithLineNo("Number: %i\n", $1); }
+          | IDENTIFIER { printWithLineNo("Identifier: %s\n", $1); }
+          | STRING { printWithLineNo("STRING: %s\n", $1); }
+          | POINTER { printWithLineNo("STRING: %s\n", $1); }
+          | expression GREATER_THAN expression { printWithLineNo("Greater-than expression\n"); }
+          | expression LESS_THAN expression { printWithLineNo("Less-than expression\n"); }
+          | expression DOUBLE_EQUAL expression { printWithLineNo("Equal expression\n"); }
+          | expression NOT_EQUAL expression { printWithLineNo("Not equal expression\n"); }
+          | expression PLUS expression { printWithLineNo("Addition expression\n"); }
+          | expression MINUS expression { printWithLineNo("Subtraction expression\n"); }
+          | expression MULT expression { printWithLineNo("Multiplication expression\n"); }
+          | expression DIV expression { printWithLineNo("Division expression\n"); }
+          | L_PAREN expression R_PAREN { printWithLineNo("Parenthesized expression\n"); }
           ;
 
 %%

@@ -1,6 +1,6 @@
-#line 2 "/home/kali/Desktop/hw-bison/build/lexer.c"
+#line 2 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
 
-#line 4 "/home/kali/Desktop/hw-bison/build/lexer.c"
+#line 4 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -523,12 +523,12 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "/home/kali/Desktop/hw-bison/lexer.l"
-#line 2 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 1 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
+#line 2 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 #include "parser.h"
 #define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
-#line 531 "/home/kali/Desktop/hw-bison/build/lexer.c"
-#line 532 "/home/kali/Desktop/hw-bison/build/lexer.c"
+#line 531 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
+#line 532 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
 
 #define INITIAL 0
 
@@ -745,10 +745,10 @@ YY_DECL
 		}
 
 	{
-#line 12 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 12 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 
 
-#line 752 "/home/kali/Desktop/hw-bison/build/lexer.c"
+#line 752 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -817,171 +817,171 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 14 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {/* 忽略空格和制表符 */}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 15 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 15 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {/* 忽略換行 */}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 17 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 17 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return IF;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 18 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return ELSE;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 19 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 19 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return RETURN;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 21 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 21 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { return GREATER_THAN; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 22 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { return LESS_THAN; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 23 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { return DOUBLE_EQUAL; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 24 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { return NOT_EQUAL; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 26 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 26 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return MINUS;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 27 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 27 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return PLUS;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 28 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 28 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return MULT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 29 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 29 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return DIV;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 30 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 30 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return EQUAL;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 32 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 32 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return L_PAREN;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 33 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 33 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return R_PAREN;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 34 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 34 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return L_BRACE;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 35 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 35 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return R_BRACE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 36 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 36 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return SEMICOLON;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 37 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 37 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return COMMA;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 39 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 39 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return INT;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 40 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 40 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return CHAR;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 41 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 41 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return PRINTF;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 42 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 42 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return SCANF;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 43 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 43 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return INCLUDE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 44 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 44 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return MAIN;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 46 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 46 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {return STDIO_H;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 48 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 48 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {yylval.dval = atof(yytext); return NUMBER;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 49 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 49 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {yylval.sval = strdup(yytext); return IDENTIFIER;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 51 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 51 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { yylval.sval = strdup(yytext); return STRING; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 52 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 52 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 { yylval.sval = strdup(yytext); return POINTER; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 54 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 54 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 {printf("Error at line %d: unrecognized symbol \"%s\"\n", yylineno, yytext); exit(0);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 56 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 56 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 ECHO;
 	YY_BREAK
-#line 985 "/home/kali/Desktop/hw-bison/build/lexer.c"
+#line 985 "/home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1998,6 +1998,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 56 "/home/kali/Desktop/hw-bison/lexer.l"
+#line 56 "/home/kali/Desktop/sf_Desktop/hw-bison/lexer.l"
 
 

@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_HOME_KALI_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_KALI_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_KALI_DESKTOP_SF_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_KALI_DESKTOP_SF_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -91,12 +91,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 9 "/home/kali/Desktop/hw-bison/parser.y"
+#line 20 "/home/kali/Desktop/sf_Desktop/hw-bison/parser.y"
 
     int dval;
     char* sval;
 
-#line 100 "/home/kali/Desktop/hw-bison/build/parser.h"
+#line 100 "/home/kali/Desktop/sf_Desktop/hw-bison/build/parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -125,4 +125,4 @@ extern YYLTYPE yylloc;
 int yyparse (void);
 
 
-#endif /* !YY_YY_HOME_KALI_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_KALI_DESKTOP_SF_DESKTOP_HW_BISON_BUILD_PARSER_H_INCLUDED  */

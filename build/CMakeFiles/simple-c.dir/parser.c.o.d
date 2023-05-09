@@ -1,6 +1,6 @@
 CMakeFiles/simple-c.dir/parser.c.o: \
- /home/kali/Desktop/hw-bison/build/parser.c /usr/include/stdc-predef.h \
- /usr/include/stdio.h \
+ /home/kali/Desktop/sf_Desktop/hw-bison/build/parser.c \
+ /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -48,7 +48,8 @@ CMakeFiles/simple-c.dir/parser.c.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /home/kali/Desktop/hw-bison/build/lexer.h /usr/include/string.h \
+ /home/kali/Desktop/sf_Desktop/hw-bison/build/lexer.h \
+ /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/errno.h \
@@ -65,4 +66,4 @@ CMakeFiles/simple-c.dir/parser.c.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/kali/Desktop/hw-bison/build/parser.h
+ /home/kali/Desktop/sf_Desktop/hw-bison/build/parser.h
