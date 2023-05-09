@@ -132,7 +132,6 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-//TODO 需要再錯誤發生時，印出錯誤的行數，在繼續判斷錯誤
 void yyerror(const char *msg) {
    printf("** Line %d: %s\n", yylloc.first_line, msg);
 }
