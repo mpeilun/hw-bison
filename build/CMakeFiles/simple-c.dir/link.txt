@@ -1,1 +1,0 @@
-/usr/bin/cc "CMakeFiles/simple-c.dir/parser.c.o" "CMakeFiles/simple-c.dir/lexer.c.o" -o simple-c 

@@ -1,4 +1,2 @@
-*.c
-*.h
-*.output
-simple-c
+./build
+!./build/input.c

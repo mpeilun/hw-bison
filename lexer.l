@@ -29,7 +29,7 @@ LETTER   [a-zA-Z]
 "/"            {return DIV;}
 "="            {return EQUAL;}
 
-"("            {return L_PAREN;}
+"("            {return L_PAREN;}w
 ")"            {return R_PAREN;}
 "{"            {return L_BRACE;}
 "}"            {return R_BRACE;}
