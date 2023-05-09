@@ -29,10 +29,6 @@ void yyerror(const char *msg);
 %start program
 
 %%
-/* input: { $$ = malloc(sizeof(custom_data)); $$->name = "input"; $$->counter = 0; }
-     | input program { $$ = $1; $1->counter++; }
-	  ; */
-
 program: include_statement main_func { printf("Input is valid.\n"); }
        ;
 

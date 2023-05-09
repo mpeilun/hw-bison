@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/kali/Desktop/sf_Desktop/simple-c/build -I/home/kali/Desktop/sf_Desktop/simple-c
+C_INCLUDES = -I/home/kali/Desktop/hw-bison/build -I/home/kali/Desktop/hw-bison
 
 C_FLAGS = 
 

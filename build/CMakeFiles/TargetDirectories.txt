@@ -1,3 +1,3 @@
-/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles/simple-c.dir
-/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles/edit_cache.dir
-/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles/rebuild_cache.dir
+/home/kali/Desktop/hw-bison/build/CMakeFiles/simple-c.dir
+/home/kali/Desktop/hw-bison/build/CMakeFiles/edit_cache.dir
+/home/kali/Desktop/hw-bison/build/CMakeFiles/rebuild_cache.dir

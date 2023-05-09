@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kali/Desktop/sf_Desktop/simple-c
+CMAKE_SOURCE_DIR = /home/kali/Desktop/hw-bison
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kali/Desktop/sf_Desktop/simple-c/build
+CMAKE_BINARY_DIR = /home/kali/Desktop/hw-bison/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/simple-c.dir/depend.make
@@ -69,16 +69,16 @@ include CMakeFiles/simple-c.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/simple-c.dir/flags.make
 
-parser.c: /home/kali/Desktop/sf_Desktop/simple-c/parser.y
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][PARSER] Building parser with bison 3.8.2"
-	cd /home/kali/Desktop/sf_Desktop/simple-c && /usr/bin/bison -d -v -d -o /home/kali/Desktop/sf_Desktop/simple-c/build/parser.c /home/kali/Desktop/sf_Desktop/simple-c/parser.y
+parser.c: /home/kali/Desktop/hw-bison/parser.y
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kali/Desktop/hw-bison/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][PARSER] Building parser with bison 3.8.2"
+	cd /home/kali/Desktop/hw-bison && /usr/bin/bison -d -v -d -o /home/kali/Desktop/hw-bison/build/parser.c /home/kali/Desktop/hw-bison/parser.y
 
 parser.h: parser.c
 	@$(CMAKE_COMMAND) -E touch_nocreate parser.h
 
-lexer.c: /home/kali/Desktop/sf_Desktop/simple-c/lexer.l
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][LEXER] Building scanner with flex 2.6.4"
-	cd /home/kali/Desktop/sf_Desktop/simple-c && /usr/bin/flex --header-file=/home/kali/Desktop/sf_Desktop/simple-c/build/lexer.h -o/home/kali/Desktop/sf_Desktop/simple-c/build/lexer.c /home/kali/Desktop/sf_Desktop/simple-c/lexer.l
+lexer.c: /home/kali/Desktop/hw-bison/lexer.l
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kali/Desktop/hw-bison/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][LEXER] Building scanner with flex 2.6.4"
+	cd /home/kali/Desktop/hw-bison && /usr/bin/flex --header-file=/home/kali/Desktop/hw-bison/build/lexer.h -o/home/kali/Desktop/hw-bison/build/lexer.c /home/kali/Desktop/hw-bison/lexer.l
 
 lexer.h: lexer.c
 	@$(CMAKE_COMMAND) -E touch_nocreate lexer.h
@@ -86,31 +86,31 @@ lexer.h: lexer.c
 CMakeFiles/simple-c.dir/parser.c.o: CMakeFiles/simple-c.dir/flags.make
 CMakeFiles/simple-c.dir/parser.c.o: parser.c
 CMakeFiles/simple-c.dir/parser.c.o: CMakeFiles/simple-c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/simple-c.dir/parser.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/simple-c.dir/parser.c.o -MF CMakeFiles/simple-c.dir/parser.c.o.d -o CMakeFiles/simple-c.dir/parser.c.o -c /home/kali/Desktop/sf_Desktop/simple-c/build/parser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kali/Desktop/hw-bison/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/simple-c.dir/parser.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/simple-c.dir/parser.c.o -MF CMakeFiles/simple-c.dir/parser.c.o.d -o CMakeFiles/simple-c.dir/parser.c.o -c /home/kali/Desktop/hw-bison/build/parser.c
 
 CMakeFiles/simple-c.dir/parser.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/simple-c.dir/parser.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kali/Desktop/sf_Desktop/simple-c/build/parser.c > CMakeFiles/simple-c.dir/parser.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kali/Desktop/hw-bison/build/parser.c > CMakeFiles/simple-c.dir/parser.c.i
 
 CMakeFiles/simple-c.dir/parser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/simple-c.dir/parser.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kali/Desktop/sf_Desktop/simple-c/build/parser.c -o CMakeFiles/simple-c.dir/parser.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kali/Desktop/hw-bison/build/parser.c -o CMakeFiles/simple-c.dir/parser.c.s
 
 CMakeFiles/simple-c.dir/lexer.c.o: CMakeFiles/simple-c.dir/flags.make
 CMakeFiles/simple-c.dir/lexer.c.o: lexer.c
 CMakeFiles/simple-c.dir/lexer.c.o: parser.h
 CMakeFiles/simple-c.dir/lexer.c.o: CMakeFiles/simple-c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/simple-c.dir/lexer.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/simple-c.dir/lexer.c.o -MF CMakeFiles/simple-c.dir/lexer.c.o.d -o CMakeFiles/simple-c.dir/lexer.c.o -c /home/kali/Desktop/sf_Desktop/simple-c/build/lexer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kali/Desktop/hw-bison/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/simple-c.dir/lexer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/simple-c.dir/lexer.c.o -MF CMakeFiles/simple-c.dir/lexer.c.o.d -o CMakeFiles/simple-c.dir/lexer.c.o -c /home/kali/Desktop/hw-bison/build/lexer.c
 
 CMakeFiles/simple-c.dir/lexer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/simple-c.dir/lexer.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kali/Desktop/sf_Desktop/simple-c/build/lexer.c > CMakeFiles/simple-c.dir/lexer.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kali/Desktop/hw-bison/build/lexer.c > CMakeFiles/simple-c.dir/lexer.c.i
 
 CMakeFiles/simple-c.dir/lexer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/simple-c.dir/lexer.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kali/Desktop/sf_Desktop/simple-c/build/lexer.c -o CMakeFiles/simple-c.dir/lexer.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kali/Desktop/hw-bison/build/lexer.c -o CMakeFiles/simple-c.dir/lexer.c.s
 
 # Object files for target simple-c
 simple__c_OBJECTS = \
@@ -124,7 +124,7 @@ simple-c: CMakeFiles/simple-c.dir/parser.c.o
 simple-c: CMakeFiles/simple-c.dir/lexer.c.o
 simple-c: CMakeFiles/simple-c.dir/build.make
 simple-c: CMakeFiles/simple-c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable simple-c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kali/Desktop/hw-bison/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable simple-c"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simple-c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -139,6 +139,6 @@ CMakeFiles/simple-c.dir/depend: lexer.c
 CMakeFiles/simple-c.dir/depend: lexer.h
 CMakeFiles/simple-c.dir/depend: parser.c
 CMakeFiles/simple-c.dir/depend: parser.h
-	cd /home/kali/Desktop/sf_Desktop/simple-c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kali/Desktop/sf_Desktop/simple-c /home/kali/Desktop/sf_Desktop/simple-c /home/kali/Desktop/sf_Desktop/simple-c/build /home/kali/Desktop/sf_Desktop/simple-c/build /home/kali/Desktop/sf_Desktop/simple-c/build/CMakeFiles/simple-c.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kali/Desktop/hw-bison/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kali/Desktop/hw-bison /home/kali/Desktop/hw-bison /home/kali/Desktop/hw-bison/build /home/kali/Desktop/hw-bison/build /home/kali/Desktop/hw-bison/build/CMakeFiles/simple-c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/simple-c.dir/depend
 
